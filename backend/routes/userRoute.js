@@ -1,0 +1,15 @@
+const express = require("express")
+const { register, forgotPassword, resetPassword, logout, getUserDetails, updatePassword, updateProfile }= require('../controllers/userController')
+const {isAuthenticatedUser}= require('../middleware/auth')
+const { login }= require('../controllers/userController')
+const router= express.Router()
+router.route("/register").post(register)
+router.route("/login").post(login)
+router.route("/logout").get(logout)
+router.route("/password/forgot").post(forgotPassword)
+router.route("/password/reset/:token").put(resetPassword)
+router.route("/me").get(getUserDetails)
+router.route("/password/update").put(updatePassword)
+router.route('/edit').put(updateProfile)
+
+module.exports = router
